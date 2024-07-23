@@ -9,7 +9,7 @@ const handlePostReview = async (req, res) => {
   try {
     const { image, author, email, message, rating } = req.body;
 
-    if (!image || !author || !email || !message || !rating) {
+    if (!image | !author || !email || !message || !rating) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -34,12 +34,10 @@ const handlePostReview = async (req, res) => {
 
     await newReview.save();
 
-    res.setHeader("Content-Type", "application/json");
     return res
       .status(200)
       .json({ success_message: "Review posted successfully" });
   } catch (error) {
-    res.setHeader("Content-Type", "application/json");
     return res.status(400).json({ error_message: error.message });
   }
 };
